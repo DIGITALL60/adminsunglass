@@ -28,7 +28,7 @@ app.use("/api", router);
 // Serve built React admin frontend (SPA fallback)
 const publicDir = path.join(process.cwd(), "dist/public");
 app.use(express.static(publicDir));
-app.get("*", (_req, res) => {
+app.get("*path", (_req, res) => {
   res.sendFile(path.join(publicDir, "index.html"));
 });
 
