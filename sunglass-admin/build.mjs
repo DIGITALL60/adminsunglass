@@ -33,8 +33,8 @@ async function buildAll() {
     platform: "node",
     bundle: true,
     format: "esm",
-    outdir: path.resolve(distDir),
-    entryNames: "server",
+    outdir: path.resolve(distDir, "server"),
+    entryNames: "index",
     outExtension: { ".js": ".mjs" },
     logLevel: "info",
     external: [
@@ -53,7 +53,7 @@ globalThis.__filename = __bannerUrl.fileURLToPath(import.meta.url);
 globalThis.__dirname = __bannerPath.dirname(globalThis.__filename);`,
     },
   });
-  console.log("✓ Backend built → dist/server.mjs");
+  console.log("✓ Backend built → dist/server/index.mjs");
 }
 
 buildAll().catch((err) => {
