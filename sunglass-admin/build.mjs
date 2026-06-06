@@ -2,7 +2,6 @@ import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { build as esbuild } from "esbuild";
-import esbuildPluginPino from "esbuild-plugin-pino";
 import { rm, mkdir } from "node:fs/promises";
 import { build as viteBuild } from "vite";
 import react from "@vitejs/plugin-react";
@@ -33,16 +32,14 @@ async function buildAll() {
     platform: "node",
     bundle: true,
     format: "esm",
-    outdir: path.resolve(distDir, "server"),
-    entryNames: "index",
-    outExtension: { ".js": ".mjs" },
+    outfile: path.resolve(distDir, "server/index.mjs"),
     logLevel: "info",
     external: [
       "*.node", "sharp", "better-sqlite3", "sqlite3", "canvas",
       "bcrypt", "argon2", "fsevents", "pg-native", "oracledb",
       "mysql2", "sequelize", "typeorm", "@prisma/client",
+      "pino-pretty", "thread-stream",
     ],
-    plugins: [esbuildPluginPino({ transports: ["pino-pretty"] })],
     banner: {
       js: `import { createRequire as __bannerCrReq } from 'node:module';
 import __bannerPath from 'node:path';
