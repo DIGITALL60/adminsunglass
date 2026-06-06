@@ -8,7 +8,6 @@ import { build as viteBuild } from "vite";
 import react from "@vitejs/plugin-react";
 
 globalThis.require = createRequire(import.meta.url);
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function buildAll() {
@@ -34,7 +33,9 @@ async function buildAll() {
     platform: "node",
     bundle: true,
     format: "esm",
-    outfile: path.resolve(distDir, "server.mjs"),
+    outdir: path.resolve(distDir),
+    entryNames: "server",
+    outExtension: { ".js": ".mjs" },
     logLevel: "info",
     external: [
       "*.node", "sharp", "better-sqlite3", "sqlite3", "canvas",
