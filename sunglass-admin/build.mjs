@@ -42,7 +42,6 @@ async function buildAll() {
       "bcrypt", "argon2", "fsevents", "pg-native", "oracledb",
       "mysql2", "sequelize", "typeorm", "@prisma/client",
     ],
-    sourcemap: "linked",
     plugins: [esbuildPluginPino({ transports: ["pino-pretty"] })],
     banner: {
       js: `import { createRequire as __bannerCrReq } from 'node:module';
